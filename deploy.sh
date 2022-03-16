@@ -23,9 +23,9 @@ if [ -z "$PROVISIONED" ]; then
 
   $TERRAFORM_CMD init
   $TERRAFORM_CMD apply -auto-approve \
-                       -var "linode_token=$LINODE_TOKEN" \
-                       -var "linode_public_key=$LINODE_PUBLIC_KEY" \
-                       -var "linode_private_key=$LINODE_PRIVATE_KEY" \
+                       -var "digitalocean_token=$DIGITALOCEAN_TOKEN" \
+                       -var "digitalocean_public_key=$DIGITALOCEAN_PUBLIC_KEY" \
+                       -var "digitalocean_private_key=$DIGITALOCEAN_PRIVATE_KEY" \
                        -var "cloudflare_email=$CLOUDFLARE_EMAIL" \
                        -var "cloudflare_api_key=$CLOUDFLARE_API_KEY" \
                        -var "cloudflare_zone_id=$CLOUDFLARE_ZONE_ID" \
