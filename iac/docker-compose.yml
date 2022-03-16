@@ -4,7 +4,7 @@ services:
   database:
     build:
       context: ../database
-    image: ghcr.io/fvilarinho/demo-database:${BUILD_VERSION}
+    image: ghcr.io/afabrete/demo-database:${BUILD_VERSION}
     container_name: database
     hostname: database
     ports:
@@ -15,7 +15,7 @@ services:
   backend:
     build:
       context: ../backend
-    image: ghcr.io/fvilarinho/demo-backend:${BUILD_VERSION}
+    image: ghcr.io/afabrete/demo-backend:${BUILD_VERSION}
     container_name: backend
     hostname: backend
     ports:
@@ -27,7 +27,7 @@ services:
   frontend:
     build:
       context: ../frontend
-    image: ghcr.io/fvilarinho/demo-frontend:${BUILD_VERSION}
+    image: ghcr.io/afabrete/demo-frontend:${BUILD_VERSION}
     container_name: frontend
     hostname: frontend
     ports:
