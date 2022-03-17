@@ -28,7 +28,7 @@ provider "cloudflare" {
   api_key = var.cloudflare_api_key
 }
 
-resource "digitalocean_ssh_key" "default" {
+data "digitalocean_ssh_key" "default" {
   name       = "default auth"
 }
 
@@ -37,7 +37,7 @@ resource "digitalocean_droplet" "doguinhos" {
   name     = "cluster-manager"
   region   = "nyc1"
   size     = "s-2vcpu-4gb"
-  ssh_keys = [digitalocean_ssh_key.default.id]
+  ssh_keys = [data.digitalocean_ssh_key.default.id]
 
   provisioner "remote-exec" {
     inline = [
