@@ -84,5 +84,6 @@ jobs:
         DIGITALOCEAN_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_PRIVATE_KEY }}
         DIGITALOCEAN_PUBLIC_KEY: ${{ secrets.DIGITALOCEAN_PUBLIC_KEY }}
         DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+        TERRAFORM_TOKEN: ${{ secrets.TERRAFORM_TOKEN }}
         DATADOG_AGENT_KEY: ${{ secrets.DATADOG_AGENT_KEY }}
       run: ./deploy.sh
