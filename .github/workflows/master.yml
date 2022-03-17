@@ -81,8 +81,8 @@ jobs:
         CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
         CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
         CLOUDFLARE_ZONE_NAME: ${{ secrets.CLOUDFLARE_ZONE_NAME }}
-        LINODE_PRIVATE_KEY: ${{ secrets.LINODE_PRIVATE_KEY }}
-        LINODE_PUBLIC_KEY: ${{ secrets.LINODE_PUBLIC_KEY }}
-        LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+        DIGITALOCEAN_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_PRIVATE_KEY }}
+        DIGITALOCEAN_PUBLIC_KEY: ${{ secrets.DIGITALOCEAN_PUBLIC_KEY }}
+        DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
         DATADOG_AGENT_KEY: ${{ secrets.DATADOG_AGENT_KEY }}
       run: ./deploy.sh
