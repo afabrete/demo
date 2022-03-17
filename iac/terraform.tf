@@ -34,7 +34,7 @@ data "digitalocean_ssh_key" "default" {
 
 resource "digitalocean_droplet" "doguinhos" {
   image    = "debian-10-x64"
-  name     = "cluster-manager"
+  name     = "doguinhos"
   region   = "nyc1"
   size     = "s-2vcpu-4gb"
   ssh_keys = [data.digitalocean_ssh_key.default.id]
