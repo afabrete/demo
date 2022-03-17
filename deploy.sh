@@ -3,7 +3,7 @@
 cd iac
 
 export BUILD_VERSION=`sed 's/BUILD_VERSION=//g' .env`
-export PROVISIONED=`dig +short cluster-manager.$CLOUDFLARE_ZONE_NAME`
+export PROVISIONED=`dig +short doguinhos.$CLOUDFLARE_ZONE_NAME`
 export KUBECTL_CMD=`which kubectl`
 
 echo "$LINODE_PRIVATE_KEY" > /tmp/.id_rsa
@@ -32,11 +32,11 @@ if [ -z "$PROVISIONED" ]; then
                        -var "cloudflare_zone_name=$CLOUDFLARE_ZONE_NAME" \
                        -var "datadog_agent_key=$DATADOG_AGENT_KEY"
 
-  CLUSTER_MANAGER_IP=`cat cluster-manager-ip`
+  CLUSTER_MANAGER_IP=`cat doguinhos-ip`
 
-  rm cluster-manager-ip
+  rm doguinhos-ip
 
-  scp -i /tmp/.id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@$CLUSTER_MANAGER_IP:/etc/rancher/k3s/k3s.yaml ./.kubeconfig
+  scp -i /tmp/.id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@$doguinhos_IP:/etc/rancher/k3s/k3s.yaml ./.kubeconfig
 
   sed -i -e 's|127.0.0.1|'"$CLUSTER_MANAGER_IP"'|g' ./.kubeconfig
 
@@ -50,11 +50,11 @@ if [ -z "$PROVISIONED" ]; then
 else
   scp -i /tmp/.id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@cluster-manager.$CLOUDFLARE_ZONE_NAME:/etc/rancher/k3s/k3s.yaml ./.kubeconfig
 
-  sed -i -e 's|127.0.0.1|'"cluster-manager.$CLOUDFLARE_ZONE_NAME"'|g' ./.kubeconfig
+  sed -i -e 's|127.0.0.1|'"doguinhos.$CLOUDFLARE_ZONE_NAME"'|g' ./.kubeconfig
 
-  $KUBECTL_CMD --kubeconfig=./.kubeconfig set image deployment database database=ghcr.io/fvilarinho/demo-database:$BUILD_VERSION
-  $KUBECTL_CMD --kubeconfig=./.kubeconfig set image daemonset backend backend=ghcr.io/fvilarinho/demo-backend:$BUILD_VERSION
-  $KUBECTL_CMD --kubeconfig=./.kubeconfig set image daemonSet frontend frontend=ghcr.io/fvilarinho/demo-frontend:$BUILD_VERSION
+  $KUBECTL_CMD --kubeconfig=./.kubeconfig set image deployment database database=ghcr.io/afabrete/demo-database:$BUILD_VERSION
+  $KUBECTL_CMD --kubeconfig=./.kubeconfig set image daemonset backend backend=ghcr.io/afabrete/demo-backend:$BUILD_VERSION
+  $KUBECTL_CMD --kubeconfig=./.kubeconfig set image daemonSet frontend frontend=ghcr.io/afabrete/demo-frontend:$BUILD_VERSION
 fi
 
 rm -f ./.kubeconfig*
